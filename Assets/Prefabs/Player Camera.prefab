@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 387146446107054291}
   - component: {fileID: 387146446107054297}
   - component: {fileID: 387146446107054294}
-  - component: {fileID: 387146446107054296}
-  - component: {fileID: 387146446107054295}
+  - component: {fileID: 8501850893150039705}
   m_Layer: 0
   m_Name: Player Camera
   m_TagString: MainCamera
@@ -99,7 +98,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba9f058d81fcc04d9f52e92fa5abe09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flyCamera: {fileID: 387146446107054294}
 --- !u!114 &387146446107054294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,9 +110,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a48ecb17ec1164982fabaa4cecadbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 387146446107054297}
+  playerInteractionSubclass: {fileID: 8501850893150039705}
   movementSpeed: 0.1
   rotationSpeed: 1.5
---- !u!114 &387146446107054296
+--- !u!114 &8501850893150039705
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,22 +123,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 387146446107054290}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8aa632002b3f6e43ab6c558982b1dc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GUI: {fileID: 0}
---- !u!114 &387146446107054295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 387146446107054290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f911356139c3a054f98ce58ae331c5ee, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ceaf78592b1205439de45c1ac118583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactionInput: 0
   inputType: 0
   raycastMaxDistance: 100
+  playerInput: {fileID: 387146446107054297}

@@ -307,6 +307,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GUI: {fileID: 1388391216452814614}
+  rb: {fileID: 2349238973480000437}
+  movementSpeed: 30
 --- !u!1 &8289531858808041337
 GameObject:
   m_ObjectHideFlags: 0

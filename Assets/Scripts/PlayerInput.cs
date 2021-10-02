@@ -4,19 +4,37 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    [SerializeField]
-    private FlyCamera flyCamera = null;
+    float keyboardHorizontalInput;
+    float keyboardVerticalInput;
+
+    private float mouseX;
+    private float mouseY;
+
+    public float MouseX 
+    { 
+        get => mouseX; 
+    }
+    public float MouseY 
+    { 
+        get => mouseY;
+    }
+    public float KeyboardHorizontalInput 
+    { 
+        get => keyboardHorizontalInput; 
+    }
+    public float KeyboardVerticalInput 
+    { 
+        get => keyboardVerticalInput;
+    }
 
     // Update is called once per frame
     private void Update()
     {
         // Move
-        float keyboardHorizontalInput = Input.GetAxis("Horizontal");
-        float keyboardVerticalInput = Input.GetAxis("Vertical");
-        flyCamera.Move(keyboardHorizontalInput, keyboardVerticalInput);
+        this.keyboardHorizontalInput = Input.GetAxis("Horizontal");
+        this.keyboardVerticalInput = Input.GetAxis("Vertical");
 
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
-        flyCamera.RotateCamera(mouseX, mouseY);
+        this.mouseX = Input.GetAxis("Mouse X");
+        this.mouseY = Input.GetAxis("Mouse Y");
     }
 }

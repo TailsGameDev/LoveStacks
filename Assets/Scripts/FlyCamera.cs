@@ -2,11 +2,18 @@ using UnityEngine;
 
 public interface FlyCameraInstance
 {
-    public Vector3 GetForward();
+    public Vector3 GetRightAxis();
+    public Vector3 GetForwardAxis();
 }
 
 public class FlyCamera : MonoBehaviour, FlyCameraInstance
 {
+    [SerializeField]
+    private PlayerInput playerInput = null;
+
+    [SerializeField]
+    private PlayerInteractionSubclass playerInteractionSubclass = null;
+
     [SerializeField]
     private float movementSpeed = 0.0f;
     [SerializeField]
@@ -34,19 +41,30 @@ public class FlyCamera : MonoBehaviour, FlyCameraInstance
         }
     }
 
-    public void Move(float horizontalInput, float verticalInput)
+    private void Update()
     {
-        Vector3 translationDirection = new Vector3(horizontalInput, 0.0f, verticalInput);
-        transform.Translate(translationDirection * movementSpeed);
-    }
-    public void RotateCamera(float mouseX, float mouseY)
-    {
-        // transform.y rotates relative to world so X axis do not influence it.
-        transform.Rotate(new Vector3(0, mouseX, 0) * rotationSpeed, relativeTo: Space.World);
-        transform.Rotate(new Vector3(-mouseY, 0, 0) * rotationSpeed, relativeTo: Space.Self);
+        if (!playerInteractionSubclass.IsInteractionInProgress())
+        {
+            // Move
+            float horizontalInput = playerInput.KeyboardHorizontalInput;
+            float verticalInput = playerInput.KeyboardVerticalInput;
+            Vector3 translationDirection = new Vector3(horizontalInput, 0.0f, verticalInput);
+            transform.Translate(translationDirection * movementSpeed);
+
+            // Rotate
+            float mouseX = playerInput.MouseX;
+            float mouseY = playerInput.MouseY;
+            // transform.y rotates relative to world so X axis do not influence it.
+            transform.Rotate(new Vector3(0, mouseX, 0) * rotationSpeed, relativeTo: Space.World);
+            transform.Rotate(new Vector3(-mouseY, 0, 0) * rotationSpeed, relativeTo: Space.Self);
+        }
     }
 
-    public Vector3 GetForward()
+    public Vector3 GetRightAxis()
+    {
+        return transform.right;
+    }
+    public Vector3 GetForwardAxis()
     {
         return transform.forward;
     }

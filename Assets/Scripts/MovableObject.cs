@@ -2,15 +2,21 @@ using UnityEngine;
 
 public class MovableObject : Interactable
 {
+    [SerializeField]
+    private Rigidbody rb = null;
+
+    [SerializeField]
+    private float movementSpeed = 0.0f;
+
     private bool isMoving;
     private FlyCameraInstance flyCameraInstance;
 
-    private Vector3 horizontalMoveAxis;
-    private Vector3 verticalMoveAxis;
+    private Vector3 movementRightAxis;
+    private Vector3 movementForwardAxis;
 
-    private void Awake()
-    {
-        this.verticalMoveAxis = Vector3.up;
+    public bool IsMoving 
+    { 
+        get => isMoving; 
     }
 
     private void Start()
@@ -18,21 +24,25 @@ public class MovableObject : Interactable
         this.flyCameraInstance = FlyCamera.FlyCameraInstance;
     }
 
-    public override void Interact()
+    public override void StartInteraction()
     {
-        isMoving = !isMoving;
-        Vector3 cameraForward = this.flyCameraInstance.GetForward();
-        this.horizontalMoveAxis = Vector3.Cross(cameraForward, Vector3.up).normalized;
+        isMoving = true;
+        rb.isKinematic = true;
+        movementRightAxis = this.flyCameraInstance.GetRightAxis();
+        movementForwardAxis = this.flyCameraInstance.GetForwardAxis();
+    }
+    public void StopInteraction()
+    {
+        isMoving = false;
+        rb.isKinematic = false;
     }
 
-    private void Update()
+    public void UpadateInteraction(float right, float up, float forward)
     {
-        if (isMoving)
-        {
-            
-            
-
-            
-        }
+        Vector3 scaledRightComponent = movementRightAxis * right;
+        Vector3 scaledUpComponent = Vector3.up * up;
+        Vector3 scaledForwardComponent = movementForwardAxis * forward;
+        Vector3 movementDirection = scaledRightComponent + scaledUpComponent + scaledForwardComponent;
+        transform.Translate(movementDirection * movementSpeed * Time.deltaTime, Space.World);
     }
 }
