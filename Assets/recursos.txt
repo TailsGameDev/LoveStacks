@@ -1,0 +1,9 @@
+Botões Usados:
+https://assetstore.unity.com/packages/2d/gui/icons/simple-ui-icons-147101
+
+Imagem Coração:
+https://i2.wp.com/multarte.com.br/wp-content/uploads/2018/10/coracao-png.png?fit=2400%2C1706&ssl=1
+
+Imagem Ludum Dare tirada do twitter:
+https://pbs.twimg.com/profile_images/842113659056746496/05pG0P7I_400x400.jpg
+https://twitter.com/ludumdare
