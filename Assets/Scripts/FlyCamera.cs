@@ -11,6 +11,13 @@ public class FlyCamera : MonoBehaviour
 
     private Vector2 lastFrameMousePosition;
 
+    private void Awake()
+    {
+        // TODO: Find a better place for next lines if any
+        // Lock cursos so it stays at the middle of the screen.
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     private void Update()
     {
         // Move
