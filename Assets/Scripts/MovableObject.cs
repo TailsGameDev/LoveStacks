@@ -28,8 +28,16 @@ public class MovableObject : Interactable
     {
         isMoving = true;
         rb.isKinematic = true;
+        
+        // Get RightAxis from camera but project it to the horizontal plane
         movementRightAxis = this.flyCameraInstance.GetRightAxis();
+        movementRightAxis.y = 0.0f;
+        movementRightAxis.Normalize();
+
+        // Get ForwardAxis from camera but project it to the horizontal plane
         movementForwardAxis = this.flyCameraInstance.GetForwardAxis();
+        movementForwardAxis.y = 0.0f;
+        movementForwardAxis.Normalize();
     }
     public void StopInteraction()
     {
