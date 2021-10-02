@@ -11,7 +11,8 @@ public class MovableObject : Interactable
     private bool isMoving;
     private FlyCameraInstance flyCameraInstance;
 
-    private Vector3 horizontalMovementAxis;
+    private Vector3 movementRightAxis;
+    private Vector3 movementForwardAxis;
 
     public bool IsMoving 
     { 
@@ -27,7 +28,8 @@ public class MovableObject : Interactable
     {
         isMoving = true;
         rb.isKinematic = true;
-        horizontalMovementAxis = this.flyCameraInstance.GetRight();
+        movementRightAxis = this.flyCameraInstance.GetRightAxis();
+        movementForwardAxis = this.flyCameraInstance.GetForwardAxis();
     }
     public void StopInteraction()
     {
@@ -35,11 +37,12 @@ public class MovableObject : Interactable
         rb.isKinematic = false;
     }
 
-    public void UpadateInteraction(float mouseX, float mouseY)
+    public void UpadateInteraction(float right, float up, float forward)
     {
-        Vector3 scaledHorizontalComponent = (horizontalMovementAxis * mouseX);
-        Vector3 scaledVerticalComponent = new Vector3(0.0f, mouseY, 0.0f);
-        Vector3 movementDirection = scaledHorizontalComponent + scaledVerticalComponent;
+        Vector3 scaledRightComponent = movementRightAxis * right;
+        Vector3 scaledUpComponent = Vector3.up * up;
+        Vector3 scaledForwardComponent = movementForwardAxis * forward;
+        Vector3 movementDirection = scaledRightComponent + scaledUpComponent + scaledForwardComponent;
         transform.Translate(movementDirection * movementSpeed * Time.deltaTime, Space.World);
     }
 }

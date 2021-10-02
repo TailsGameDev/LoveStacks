@@ -98,7 +98,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba9f058d81fcc04d9f52e92fa5abe09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flyCamera: {fileID: 387146446107054294}
 --- !u!114 &387146446107054294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a48ecb17ec1164982fabaa4cecadbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 387146446107054297}
+  playerInteractionSubclass: {fileID: 8501850893150039705}
   movementSpeed: 0.1
   rotationSpeed: 1.5
 --- !u!114 &8501850893150039705

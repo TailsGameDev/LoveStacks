@@ -38,9 +38,15 @@ public class PlayerInteractionSubclass : PlayerInteraction
         // Calls the acctual movement logic on current movingObject if any
         if (this.movingObject != null)
         {
-            float mouseX = playerInput.MouseX;
             float mouseY = playerInput.MouseY;
-            movingObject.UpadateInteraction(mouseX, mouseY);
+            float horizontalInput = playerInput.KeyboardHorizontalInput;
+            float verticalInput = playerInput.KeyboardVerticalInput;
+            movingObject.UpadateInteraction(right: horizontalInput, up: mouseY, forward: verticalInput);
         }
+    }
+
+    public bool IsInteractionInProgress()
+    {
+        return this.movingObject != null && this.movingObject.IsMoving;
     }
 }
