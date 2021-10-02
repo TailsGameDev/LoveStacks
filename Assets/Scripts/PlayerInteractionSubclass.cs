@@ -1,0 +1,46 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerInteractionSubclass : PlayerInteraction
+{
+    [SerializeField]
+    private PlayerInput playerInput = null;
+
+    private MovableObject movingObject;
+
+    protected override void Update()
+    {
+        // Sets the currentInteractable, and is an important part of the proccess that configures MovableObject.IsMoving
+        base.Update();
+
+        // Stop interaction if needed
+        if (this.movingObject != null && this.movingObject.IsMoving && HasInputBeenPressed())
+        {
+            movingObject.StopInteraction();
+            this.movingObject = null;
+        }
+
+        // Remember the moving object if some interaction has started
+        if (CurrentInteractable != null)
+        {            
+            MovableObject movableObject = (MovableObject)CurrentInteractable;
+
+            // NOTE: it's impossible to cache an object you just dropped (in this frame) because it
+            // must be moving so this script caches the moving object, and the StopInteraction() should
+            // set movableObject.IsMoving to false
+            if (movableObject.IsMoving)
+            {
+                this.movingObject = movableObject;
+            }
+        }
+
+        // Calls the acctual movement logic on current movingObject if any
+        if (this.movingObject != null)
+        {
+            float mouseX = playerInput.MouseX;
+            float mouseY = playerInput.MouseY;
+            movingObject.UpadateInteraction(mouseX, mouseY);
+        }
+    }
+}

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface FlyCameraInstance
 {
-    public Vector3 GetForward();
+    public Vector3 GetRight();
 }
 
 public class FlyCamera : MonoBehaviour, FlyCameraInstance
@@ -46,8 +46,8 @@ public class FlyCamera : MonoBehaviour, FlyCameraInstance
         transform.Rotate(new Vector3(-mouseY, 0, 0) * rotationSpeed, relativeTo: Space.Self);
     }
 
-    public Vector3 GetForward()
+    public Vector3 GetRight()
     {
-        return transform.forward;
+        return transform.right;
     }
 }

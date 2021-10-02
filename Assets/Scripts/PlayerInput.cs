@@ -7,6 +7,18 @@ public class PlayerInput : MonoBehaviour
     [SerializeField]
     private FlyCamera flyCamera = null;
 
+    private float mouseX;
+    private float mouseY;
+
+    public float MouseX 
+    { 
+        get => mouseX; 
+    }
+    public float MouseY 
+    { 
+        get => mouseY;
+    }
+
     // Update is called once per frame
     private void Update()
     {
@@ -15,8 +27,9 @@ public class PlayerInput : MonoBehaviour
         float keyboardVerticalInput = Input.GetAxis("Vertical");
         flyCamera.Move(keyboardHorizontalInput, keyboardVerticalInput);
 
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
+        this.mouseX = Input.GetAxis("Mouse X");
+        this.mouseY = Input.GetAxis("Mouse Y");
+
         flyCamera.RotateCamera(mouseX, mouseY);
     }
 }
