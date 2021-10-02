@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInteractionSubclass : PlayerInteraction
@@ -48,5 +46,11 @@ public class PlayerInteractionSubclass : PlayerInteraction
     public bool IsInteractionInProgress()
     {
         return this.movingObject != null && this.movingObject.IsMoving;
+    }
+
+    protected override bool ShouldDisplayRaycastHitPointImage(bool hasRaycastHitSomething)
+    {
+        bool shouldDisplay = hasRaycastHitSomething && !IsInteractionInProgress();
+        return shouldDisplay;
     }
 }
