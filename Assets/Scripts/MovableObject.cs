@@ -20,7 +20,9 @@ public class MovableObject : Interactable
     private MoveState moveState = MoveState.IN_GROUND;
 
     [SerializeField]
-    private float movementSpeed = 0.0f;
+    private float xzMovementSpeed = 0.0f;
+    [SerializeField]
+    private float yMovementSpeed = 0.0f;
 
     [SerializeField]
     private MeshRenderer meshRenderer = null;
@@ -169,7 +171,7 @@ public class MovableObject : Interactable
     {
         if (!IsInTheStack)
         {
-            SetMovingState(interacting: true);
+            SetIsMoving(isMoving: true);
 
             // Get RightAxis from camera but project it to the horizontal plane
             movementRightAxis = this.flyCameraInstance.GetRightAxis();
@@ -184,20 +186,20 @@ public class MovableObject : Interactable
     }
     public void StopInteraction()
     {
-        SetMovingState(interacting: false);
+        SetIsMoving(isMoving: false);
     }
-    private void SetMovingState(bool interacting)
+    private void SetIsMoving(bool isMoving)
     {
-        if (interacting)
+        if (isMoving)
         {
-            isMoving = true;
+            this.isMoving = true;
             rb.useGravity = false;
             rb.drag = 10.0f;
             rb.angularDrag = 1.5f;
         }
         else
         {
-            isMoving = false;
+            this.isMoving = false;
             rb.useGravity = true;
             rb.drag = 1.0f;
             rb.angularDrag = 0.05f;
@@ -210,8 +212,12 @@ public class MovableObject : Interactable
         Vector3 scaledRightComponent = movementRightAxis * right;
         Vector3 scaledUpComponent = Vector3.up * up;
         Vector3 scaledForwardComponent = movementForwardAxis * forward;
-        Vector3 movementDirection = scaledRightComponent + scaledUpComponent + scaledForwardComponent;
-        Vector3 force = movementDirection * movementSpeed;
+        Vector3 movementDirection =
+            (xzMovementSpeed * scaledRightComponent) + 
+            (yMovementSpeed * scaledUpComponent) +
+            (xzMovementSpeed * scaledForwardComponent);
+        Vector3 force = movementDirection * Time.deltaTime;
+        // TODO use right multiplier for Y force
         rb.AddForce(force);
     }
     

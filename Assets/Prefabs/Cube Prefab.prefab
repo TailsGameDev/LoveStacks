@@ -191,9 +191,9 @@ GameObject:
   - component: {fileID: 4401292411049816867}
   - component: {fileID: 3585984887149635357}
   - component: {fileID: 8193727479351043204}
-  - component: {fileID: 6858024650179087394}
-  - component: {fileID: 2349238973480000437}
   - component: {fileID: 7369012596196508931}
+  - component: {fileID: 2349238973480000437}
+  - component: {fileID: 6858024650179087394}
   m_Layer: 0
   m_Name: Cube Prefab
   m_TagString: Untagged
@@ -265,19 +265,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6858024650179087394
-BoxCollider:
+--- !u!114 &7369012596196508931
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5107603864671082588}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8aa632002b3f6e43ab6c558982b1dc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GUI: {fileID: 1388391216452814614}
+  rb: {fileID: 2349238973480000437}
+  moveState: 0
+  xzMovementSpeed: 40000
+  yMovementSpeed: 200000
+  meshRenderer: {fileID: 8193727479351043204}
+  debugMaterials:
+  - {fileID: 2100000, guid: 61d50c1be9bc9ba459460801f3681045, type: 2}
+  - {fileID: 2100000, guid: 668d97d62428b7241a34759db7c601ba, type: 2}
+  - {fileID: 2100000, guid: c6b46010961a75d44aadb6bb90fd1496, type: 2}
+  - {fileID: 2100000, guid: f57ba3f368a04c243989a9f37c7bd393, type: 2}
+  - {fileID: 2100000, guid: a46699b92f3693b42b97a3a03a5e2a9e, type: 2}
+  - {fileID: 2100000, guid: bb81de717cae5ef4bb3a2430e17b033e, type: 2}
+  inStackCollisions: []
 --- !u!54 &2349238973480000437
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -294,30 +307,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &7369012596196508931
-MonoBehaviour:
+--- !u!65 &6858024650179087394
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5107603864671082588}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8aa632002b3f6e43ab6c558982b1dc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GUI: {fileID: 1388391216452814614}
-  rb: {fileID: 2349238973480000437}
-  moveState: 0
-  movementSpeed: 200
-  meshRenderer: {fileID: 8193727479351043204}
-  debugMaterials:
-  - {fileID: 2100000, guid: 61d50c1be9bc9ba459460801f3681045, type: 2}
-  - {fileID: 2100000, guid: 668d97d62428b7241a34759db7c601ba, type: 2}
-  - {fileID: 2100000, guid: c6b46010961a75d44aadb6bb90fd1496, type: 2}
-  - {fileID: 2100000, guid: f57ba3f368a04c243989a9f37c7bd393, type: 2}
-  - {fileID: 2100000, guid: a46699b92f3693b42b97a3a03a5e2a9e, type: 2}
-  - {fileID: 2100000, guid: bb81de717cae5ef4bb3a2430e17b033e, type: 2}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8289531858808041337
 GameObject:
   m_ObjectHideFlags: 0

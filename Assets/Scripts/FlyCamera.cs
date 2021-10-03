@@ -9,8 +9,9 @@ public interface IFlyCameraInstance
 public class FlyCamera : MonoBehaviour, IFlyCameraInstance
 {
     [SerializeField]
+    private Rigidbody rb = null;
+    [SerializeField]
     private PlayerInput playerInput = null;
-
     [SerializeField]
     private PlayerInteractionSubclass playerInteractionSubclass = null;
 
@@ -49,7 +50,9 @@ public class FlyCamera : MonoBehaviour, IFlyCameraInstance
             float horizontalInput = playerInput.KeyboardHorizontalInput;
             float verticalInput = playerInput.KeyboardVerticalInput;
             Vector3 translationDirection = new Vector3(horizontalInput, 0.0f, verticalInput);
-            transform.Translate(translationDirection * movementSpeed);
+            float myFloat = movementSpeed * Time.deltaTime;
+            rb.AddForce(horizontalInput * myFloat * transform.right);
+            rb.AddForce(verticalInput * myFloat * transform.forward);
 
             // Rotate
             float mouseX = playerInput.MouseX;

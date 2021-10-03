@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 387146446107054297}
   - component: {fileID: 387146446107054294}
   - component: {fileID: 8501850893150039705}
+  - component: {fileID: 7909416853613292666}
   - component: {fileID: 1607502064641508837}
   m_Layer: 0
   m_Name: Player Camera
@@ -60,7 +61,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -112,9 +113,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a48ecb17ec1164982fabaa4cecadbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 7909416853613292666}
   playerInput: {fileID: 387146446107054297}
   playerInteractionSubclass: {fileID: 8501850893150039705}
-  movementSpeed: 0.1
+  movementSpeed: 10000
   rotationSpeed: 1.5
 --- !u!114 &8501850893150039705
 MonoBehaviour:
@@ -133,6 +135,22 @@ MonoBehaviour:
   inputType: 0
   raycastMaxDistance: 100
   playerInput: {fileID: 387146446107054297}
+--- !u!54 &7909416853613292666
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387146446107054290}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 10
+  m_AngularDrag: 10
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!135 &1607502064641508837
 SphereCollider:
   m_ObjectHideFlags: 0
