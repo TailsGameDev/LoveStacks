@@ -2,13 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInput : MonoBehaviour
+interface IDialogInput 
+{
+}
+
+public class PlayerInput : MonoBehaviour, IDialogInput
 {
     float keyboardHorizontalInput;
     float keyboardVerticalInput;
 
     private float mouseX;
     private float mouseY;
+
+    private bool jumpInput;
+
+    private IDialogInput iDialogInput = null;
+
+    public float KeyboardHorizontalInput 
+    { 
+        get => keyboardHorizontalInput; 
+    }
+    public float KeyboardVerticalInput 
+    { 
+        get => keyboardVerticalInput;
+    }
 
     public float MouseX 
     { 
@@ -18,13 +35,18 @@ public class PlayerInput : MonoBehaviour
     { 
         get => mouseY;
     }
-    public float KeyboardHorizontalInput 
+
+    public bool JumpInput 
     { 
-        get => keyboardHorizontalInput; 
+        get => jumpInput; 
     }
-    public float KeyboardVerticalInput 
-    { 
-        get => keyboardVerticalInput;
+
+    private void Awake()
+    {
+        if (iDialogInput == null)
+        {
+            iDialogInput = this;
+        }
     }
 
     // Update is called once per frame
@@ -36,5 +58,7 @@ public class PlayerInput : MonoBehaviour
 
         this.mouseX = Input.GetAxis("Mouse X");
         this.mouseY = Input.GetAxis("Mouse Y");
+
+        this.jumpInput = Input.GetButtonDown("Jump");
     }
 }

@@ -9,7 +9,7 @@ public class MovableObject : Interactable
     private float movementSpeed = 0.0f;
 
     private bool isMoving;
-    private FlyCameraInstance flyCameraInstance;
+    private IFlyCameraInstance flyCameraInstance;
 
     private Vector3 movementRightAxis;
     private Vector3 movementForwardAxis;
@@ -52,5 +52,7 @@ public class MovableObject : Interactable
         Vector3 scaledForwardComponent = movementForwardAxis * forward;
         Vector3 movementDirection = scaledRightComponent + scaledUpComponent + scaledForwardComponent;
         transform.Translate(movementDirection * movementSpeed * Time.deltaTime, Space.World);
+
+        // TODO: test AddForce instead of transform.Translate
     }
 }

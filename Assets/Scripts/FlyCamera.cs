@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public interface FlyCameraInstance
+public interface IFlyCameraInstance
 {
     public Vector3 GetRightAxis();
     public Vector3 GetForwardAxis();
 }
 
-public class FlyCamera : MonoBehaviour, FlyCameraInstance
+public class FlyCamera : MonoBehaviour, IFlyCameraInstance
 {
     [SerializeField]
     private PlayerInput playerInput = null;
@@ -19,11 +19,11 @@ public class FlyCamera : MonoBehaviour, FlyCameraInstance
     [SerializeField]
     private float rotationSpeed = 0.0f;
 
-    private static FlyCameraInstance flyCameraInstance;
+    private static IFlyCameraInstance flyCameraInstance;
 
     private Vector2 lastFrameMousePosition;
 
-    public static FlyCameraInstance FlyCameraInstance 
+    public static IFlyCameraInstance FlyCameraInstance 
     { 
         get => flyCameraInstance;
     }
