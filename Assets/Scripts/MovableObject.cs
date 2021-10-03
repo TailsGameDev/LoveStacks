@@ -53,6 +53,14 @@ public class MovableObject : Interactable
         }
     }
 
+    public static float Score 
+    {
+        get 
+        { 
+            return score; 
+        }
+    }
+
     private void Start()
     {
         this.flyCameraInstance = FlyCamera.FlyCameraInstance;

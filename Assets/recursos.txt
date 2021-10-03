@@ -7,3 +7,7 @@ https://i2.wp.com/multarte.com.br/wp-content/uploads/2018/10/coracao-png.png?fit
 Imagem Ludum Dare tirada do twitter:
 https://pbs.twimg.com/profile_images/842113659056746496/05pG0P7I_400x400.jpg
 https://twitter.com/ludumdare
+
+Dialogs Font: 
+(README SAYS You can use them freely in your products & projects - print or digital, commercial or otherwise.)
+https://fonts.google.com/specimen/Josefin+Sans?query=josefin+sans
