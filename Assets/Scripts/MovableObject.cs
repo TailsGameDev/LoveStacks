@@ -2,8 +2,18 @@ using UnityEngine;
 
 public class MovableObject : Interactable
 {
+    private enum MoveState
+    {
+        IN_GROUND,
+        MOVING_BY_PLAYER,
+        IN_THE_STACK,
+    }
+
     [SerializeField]
     private Rigidbody rb = null;
+
+    [SerializeField]
+    private MoveState moveState = MoveState.IN_GROUND;
 
     [SerializeField]
     private float movementSpeed = 0.0f;
@@ -24,11 +34,17 @@ public class MovableObject : Interactable
         this.flyCameraInstance = FlyCamera.FlyCameraInstance;
     }
 
+    private void Update()
+    {
+        // if ()
+    }
+
     public override void StartInteraction()
     {
         isMoving = true;
-        rb.isKinematic = true;
-        
+
+        SetState(isMoving);
+
         // Get RightAxis from camera but project it to the horizontal plane
         movementRightAxis = this.flyCameraInstance.GetRightAxis();
         movementRightAxis.y = 0.0f;
@@ -42,17 +58,33 @@ public class MovableObject : Interactable
     public void StopInteraction()
     {
         isMoving = false;
-        rb.isKinematic = false;
+
+        SetState(isMoving);
+    }
+    private void SetState(bool interacting)
+    {
+        if (interacting)
+        {
+            rb.useGravity = false;
+            rb.drag = 10.0f;
+            rb.angularDrag = 1.0f;
+        }
+        else
+        {
+            rb.useGravity = true;
+            rb.drag = 0.0f;
+            rb.angularDrag = 0.05f;
+        }
     }
 
     public void UpadateInteraction(float right, float up, float forward)
     {
+        // Does the movement controlled by the player
         Vector3 scaledRightComponent = movementRightAxis * right;
         Vector3 scaledUpComponent = Vector3.up * up;
         Vector3 scaledForwardComponent = movementForwardAxis * forward;
         Vector3 movementDirection = scaledRightComponent + scaledUpComponent + scaledForwardComponent;
-        transform.Translate(movementDirection * movementSpeed * Time.deltaTime, Space.World);
-
-        // TODO: test AddForce instead of transform.Translate
+        Vector3 force = movementDirection * movementSpeed;
+        rb.AddForce(force);
     }
 }
