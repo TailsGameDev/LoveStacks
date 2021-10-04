@@ -11,3 +11,15 @@ https://twitter.com/ludumdare
 Dialogs Font: 
 (README SAYS You can use them freely in your products & projects - print or digital, commercial or otherwise.)
 https://fonts.google.com/specimen/Josefin+Sans?query=josefin+sans
+
+Audio/cute music.wav
+License 0
+https://freesound.org/people/ollisuoranta/sounds/575949/
+
+Audio/Can-can-song.mp3
+License public domain
+https://orangefreesounds.com/can-can-song/#google_vignette
+
+Audio/Carmen-Habanera.mp3
+Public Domain
+https://orangefreesounds.com/carmen-habanera/

@@ -42,7 +42,6 @@ public class Progression : MonoBehaviour
 
         if (scaledCurrentScore > goals[currentGoalIndex].Score)
         {
-            print("score beaten!");
             currentGoalIndex++;
         }
 

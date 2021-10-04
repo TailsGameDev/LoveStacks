@@ -28,10 +28,11 @@ Transform:
   m_GameObject: {fileID: 4306046685308761417}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4029617957970264656}
   - {fileID: 2363300796860622522}
+  - {fileID: 5143836601608644887}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -42,18 +43,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4306046685308761417}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 616151d78b83f0c47bfbf2d1fe844f26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 1
   BlastPower: 20
-  Cannonball: {fileID: 8578972288085489722, guid: 36976d0913d4d2143b7ec2195ab339e4,
-    type: 3}
+  Cannonball: {fileID: 8578972288085489722, guid: 36976d0913d4d2143b7ec2195ab339e4, type: 3}
   ShotPoint: {fileID: 2363300796860622522}
-  Explosion: {fileID: 2771661109152740402, guid: bfe66bccbf1de304695a06472a63da73,
-    type: 3}
+  playerInput: {fileID: 0}
+  minZRotation: 5
+  maxZRotation: 40
+  Explosion: {fileID: 2771661109152740402, guid: bfe66bccbf1de304695a06472a63da73, type: 3}
 --- !u!120 &3495213464726825826
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -61,7 +63,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4306046685308761417}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -69,6 +71,7 @@ LineRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -103,8 +106,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 1
+        time: 0.01923077
+        value: 0.25
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -165,6 +168,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numPoints: 30
   timeBetweenPoints: 0.1
+  CollidableLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &4370678027351890154
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,6 +214,8 @@ GameObject:
   - component: {fileID: 5182174662799247909}
   - component: {fileID: 3509150149469526450}
   - component: {fileID: 4953702337154788839}
+  - component: {fileID: 1943823053}
+  - component: {fileID: 5317737651281369947}
   m_Layer: 0
   m_Name: Wheels
   m_TagString: Untagged
@@ -252,6 +260,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -276,6 +285,38 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1943823053
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4490622372617556266}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3154399366593605549, guid: 2be08bca75f095844b4dfafea9880d2d, type: 3}
+--- !u!114 &5317737651281369947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4490622372617556266}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4010450569b9bb3458e1f96513a43df0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GUI: {fileID: 9213314388963243357}
+  cannonCamera: {fileID: 0}
+  cannonController: {fileID: 4526135334365081943}
+  flyingCamera: {fileID: 0}
+  cannonLineRenderer: {fileID: 3495213464726825826}
 --- !u!1 &6251168458154796140
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,6 +328,8 @@ GameObject:
   - component: {fileID: 6985132416470313547}
   - component: {fileID: 5107945114444545896}
   - component: {fileID: 6254287818800887369}
+  - component: {fileID: 1721890957}
+  - component: {fileID: 9144186476055535056}
   m_Layer: 0
   m_Name: Cannon
   m_TagString: Untagged
@@ -331,6 +374,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -355,6 +399,38 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1721890957
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6251168458154796140}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 369689273696691656, guid: 2be08bca75f095844b4dfafea9880d2d, type: 3}
+--- !u!114 &9144186476055535056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6251168458154796140}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4010450569b9bb3458e1f96513a43df0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GUI: {fileID: 9213314388963243357}
+  cannonCamera: {fileID: 0}
+  cannonController: {fileID: 4526135334365081943}
+  flyingCamera: {fileID: 0}
+  cannonLineRenderer: {fileID: 3495213464726825826}
 --- !u!1 &7257620617773722583
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,3 +461,33 @@ Transform:
   m_Father: {fileID: 8804027090838138923}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45.045002}
+--- !u!1 &9213314388963243357
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5143836601608644887}
+  m_Layer: 0
+  m_Name: GUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5143836601608644887
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9213314388963243357}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8804027090838138923}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

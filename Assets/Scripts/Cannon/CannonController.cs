@@ -4,33 +4,47 @@ using UnityEngine;
 
 public class CannonController : MonoBehaviour
 {
-    public float rotationSpeed = 1;
+    [SerializeField]
+    private float rotationSpeed = 1;
+    [SerializeField]
     public float BlastPower = 5;
 
-    public GameObject Cannonball;
+    [SerializeField]
+    private GameObject Cannonball;
+    [SerializeField]
     public Transform ShotPoint;
+
+    [SerializeField]
+    private PlayerInput playerInput = null;
+    [SerializeField]
+    private float minZRotation = 0.0f;
+    [SerializeField]
+    private float maxZRotation = 0.0f;
 
     public GameObject Explosion;
     private void Update()
     {
-        float HorizontalRotation = Input.GetAxis("Horizontal");
-        float VericalRotation = Input.GetAxis("Vertical");
+        float horizontalRotation = playerInput.MouseX; // Input.GetAxis("Horizontal");
+        float verticalRotation = -playerInput.MouseY; // Input.GetAxis("Vertical");
 
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + 
-            new Vector3(0, HorizontalRotation * rotationSpeed, VericalRotation * rotationSpeed));
+        Vector3 desiredAngles = transform.rotation.eulerAngles +
+            (new Vector3(0, horizontalRotation, verticalRotation) * rotationSpeed);
+        desiredAngles.z = Mathf.Clamp(desiredAngles.z, minZRotation, maxZRotation);
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GameObject CreatedCannonball = Instantiate(Cannonball, ShotPoint.position, ShotPoint.rotation);
-            CreatedCannonball.GetComponent<Rigidbody>().velocity = ShotPoint.transform.up * BlastPower;
-            
-            // Added explosion for added effect
-            Destroy(Instantiate(Explosion, ShotPoint.position, ShotPoint.rotation), 2);
-
-            // Shake the screen for added effect
-            Screenshake.ShakeAmount = 5;
-        }
+        Quaternion desiredRotation = Quaternion.Euler(desiredAngles);
+        transform.rotation = desiredRotation;
     }
 
+    public void Shoot()
+    {
+        GameObject CreatedCannonball = Instantiate(Cannonball, ShotPoint.position, ShotPoint.rotation);
+        CreatedCannonball.GetComponent<Rigidbody>().velocity = ShotPoint.transform.up * BlastPower;
+
+        // Added explosion for added effect
+        Destroy(Instantiate(Explosion, ShotPoint.position, ShotPoint.rotation), 2);
+
+        // Shake the screen for added effect
+        Screenshake.ShakeAmount = 5;
+    }
 
 }
