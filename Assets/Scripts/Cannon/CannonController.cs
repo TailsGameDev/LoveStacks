@@ -8,6 +8,8 @@ public class CannonController : MonoBehaviour
     private float rotationSpeed = 1;
     [SerializeField]
     public float BlastPower = 5;
+    [SerializeField]
+    private GameObject Explosion;
 
     [SerializeField]
     private GameObject Cannonball;
@@ -21,7 +23,6 @@ public class CannonController : MonoBehaviour
     [SerializeField]
     private float maxZRotation = 0.0f;
 
-    public GameObject Explosion;
     private void Update()
     {
         float horizontalRotation = playerInput.MouseX; // Input.GetAxis("Horizontal");

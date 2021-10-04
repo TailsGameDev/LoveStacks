@@ -49,13 +49,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 1
-  BlastPower: 20
+  BlastPower: 200
+  Explosion: {fileID: 2771661109152740402, guid: bfe66bccbf1de304695a06472a63da73, type: 3}
   Cannonball: {fileID: 8578972288085489722, guid: 36976d0913d4d2143b7ec2195ab339e4, type: 3}
   ShotPoint: {fileID: 2363300796860622522}
   playerInput: {fileID: 0}
   minZRotation: 5
-  maxZRotation: 40
-  Explosion: {fileID: 2771661109152740402, guid: bfe66bccbf1de304695a06472a63da73, type: 3}
+  maxZRotation: 50
 --- !u!120 &3495213464726825826
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -119,8 +119,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 1, g: 0, b: 0, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 0.41568628}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -264,7 +264,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 915109c9e7519f94db50b2d8733d7b57, type: 2}
+  - {fileID: 2100000, guid: c6b46010961a75d44aadb6bb90fd1496, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -378,7 +378,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 915109c9e7519f94db50b2d8733d7b57, type: 2}
+  - {fileID: 2100000, guid: 9e83813a66832ac4ba89335103fbd640, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
