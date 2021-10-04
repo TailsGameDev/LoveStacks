@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,24 +23,35 @@ public class TheSpawner : MonoBehaviour
     private float timeToSpawnNextObject;
     private int spawnPointIndex;
 
+    private List<MovableObject> spawnQueue = new List<MovableObject>();
+
     private void Awake()
     {
-        timeToSpawnNextObject = Time.time + timeBetweenSpawns;
+        SpawnRange(objectToSpawn, numberOfObjectsToSpawn);
     }
 
     private void Update()
     {
-        if (numberOfObjectsToSpawn > 0 && timeToSpawnNextObject < Time.time)
+        if (spawnQueue.Count > 0 && timeToSpawnNextObject < Time.time)
         {
             Transform spawnPoint = spawnPoints[spawnPointIndex];
             // Increment but go back to zero when overcome spawnPoints.Lenght
             spawnPointIndex = (spawnPointIndex + 1) % spawnPoints.Length;
 
-            Instantiate(objectToSpawn, spawnPoint.position, spawnPoint.rotation, parent: parentForSpawnedObjects);
+            Instantiate(spawnQueue[0], spawnPoint.position, spawnPoint.rotation, parent: parentForSpawnedObjects);
 
-            numberOfObjectsToSpawn--;
+            spawnQueue.RemoveAt(0);
 
             timeToSpawnNextObject = Time.time + timeBetweenSpawns;
+        }
+    }
+
+    public void SpawnRange(MovableObject movableObjectToSpawn, float amountOfObjectsToSpawn)
+    {
+        timeToSpawnNextObject = Time.time + timeBetweenSpawns;
+        for (int i = 0; i < amountOfObjectsToSpawn; i++)
+        {
+            spawnQueue.Add(movableObjectToSpawn);
         }
     }
 }

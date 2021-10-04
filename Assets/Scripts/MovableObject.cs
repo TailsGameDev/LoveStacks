@@ -35,6 +35,7 @@ public class MovableObject : Interactable
     private Vector3 movementRightAxis;
     private Vector3 movementForwardAxis;
 
+    [SerializeField]
     private static float score;
     private Vector3 lastFramePosition;
     private bool collidingWithObjectInTheStack;

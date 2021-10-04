@@ -8,6 +8,14 @@ public class Progression : MonoBehaviour
     {
         [SerializeField]
         private float score;
+        [SerializeField]
+        private GameObject[] dialogsToDeactivate;
+        [SerializeField]
+        private GameObject dialogToActivate;
+        [SerializeField]
+        private float amountOfObjectsToSpawn;
+        [SerializeField]
+        private MovableObject movableObjectToSpawn;
 
         public float Score 
         {
@@ -16,10 +24,28 @@ public class Progression : MonoBehaviour
                 return score; 
             }
         }
+        public GameObject DialogToActivate 
+        {
+            get => dialogToActivate;
+        }
+        public float AmountOfObjectsToSpawn 
+        {
+            get => amountOfObjectsToSpawn;
+        }
+        public MovableObject MovableObjectToSpawn
+        {
+            get => movableObjectToSpawn; 
+        }
+        public GameObject[] DialogsToDeactivate
+        {
+            get => dialogsToDeactivate;
+        }
     }
 
     [SerializeField]
     private Slider progressionSlider = null;
+    [SerializeField]
+    private TheSpawner theSpawner = null;
 
     [Tooltip("Note the goals must be in order 0 -> smaller score, Lenght-1 -> max score")]
     [SerializeField]
@@ -40,9 +66,35 @@ public class Progression : MonoBehaviour
     {
         float scaledCurrentScore = MovableObject.Score * scoreMultiplier;
 
-        if (scaledCurrentScore > goals[currentGoalIndex].Score)
+        Goal goal = goals[currentGoalIndex];
+        if (scaledCurrentScore > goal.Score)
         {
-            currentGoalIndex++;
+            // Deactivate previous goal dialogs
+            GameObject[] dialogsToDeactivate = goal.DialogsToDeactivate;
+            if (dialogsToDeactivate != null)
+            {
+                for (int d = 0; d < dialogsToDeactivate.Length; d++)
+                {
+                    dialogsToDeactivate[d].SetActive(false);
+                }
+            }
+            // Activate goal dialog
+            GameObject dialogToActivate = goal.DialogToActivate;
+            if (dialogToActivate != null)
+            {
+                dialogToActivate.SetActive(true);
+            }
+
+            theSpawner.SpawnRange(goal.MovableObjectToSpawn, goal.AmountOfObjectsToSpawn);
+
+            if (currentGoalIndex < goals.Length - 1)
+            {
+                currentGoalIndex++;
+            }
+            else
+            {
+                this.enabled = false;
+            }
         }
 
         progressionSlider.value = scaledCurrentScore / maxGoalScore;
