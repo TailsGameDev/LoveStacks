@@ -41,15 +41,18 @@ public class ButtonInteractable : Interactable
         {
             ButtonInteractable.quitTutorial -= QuitTutorial;
         }
-
-        if (explosionVFX != null)
-        {
-            Instantiate(explosionVFX, spawnPointForExplosionVFX.position, Quaternion.identity);
-        }
     }
     private void QuitTutorial()
     {
         tutorialToQuit.SetActive(false);
+        SpawnExplosionVFX();
+    }
+    public void SpawnExplosionVFX()
+    {
+        if (explosionVFX != null)
+        {
+            Instantiate(explosionVFX, spawnPointForExplosionVFX.position, Quaternion.identity);
+        }
     }
 
     public override void StartInteraction()

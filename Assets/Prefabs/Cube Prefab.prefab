@@ -279,17 +279,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GUI: {fileID: 1388391216452814614}
   rb: {fileID: 2349238973480000437}
-  moveState: 0
+  moveState: 3
   xzMovementSpeed: 40000
   yMovementSpeed: 200000
   meshRenderer: {fileID: 8193727479351043204}
   debugMaterials:
-  - {fileID: 2100000, guid: 61d50c1be9bc9ba459460801f3681045, type: 2}
-  - {fileID: 2100000, guid: 668d97d62428b7241a34759db7c601ba, type: 2}
-  - {fileID: 2100000, guid: c6b46010961a75d44aadb6bb90fd1496, type: 2}
-  - {fileID: 2100000, guid: f57ba3f368a04c243989a9f37c7bd393, type: 2}
-  - {fileID: 2100000, guid: a46699b92f3693b42b97a3a03a5e2a9e, type: 2}
   - {fileID: 2100000, guid: bb81de717cae5ef4bb3a2430e17b033e, type: 2}
+  - {fileID: 2100000, guid: a46699b92f3693b42b97a3a03a5e2a9e, type: 2}
+  - {fileID: 2100000, guid: 700e665283982654b8fca21aeebded61, type: 2}
+  - {fileID: 2100000, guid: 61d50c1be9bc9ba459460801f3681045, type: 2}
+  - {fileID: 2100000, guid: 9475e90daaf9fd744b2bf9e000c37b07, type: 2}
+  - {fileID: 2100000, guid: 61d50c1be9bc9ba459460801f3681045, type: 2}
   inStackCollisions: []
 --- !u!54 &2349238973480000437
 Rigidbody:

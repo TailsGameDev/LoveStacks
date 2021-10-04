@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 862228448078502478}
   - component: {fileID: 2628805527862876951}
   m_Layer: 0
-  m_Name: Button Cube
+  m_Name: Quit Tutorial Button Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,8 +98,8 @@ MonoBehaviour:
   GUI: {fileID: 2141947930548892813}
   tutorialToQuit: {fileID: 9057311036266262547}
   buttonType: 1
-  explosionVFX: {fileID: 0}
-  spawnPointForExplosionVFX: {fileID: 0}
+  explosionVFX: {fileID: 2771661109152740402, guid: bfe66bccbf1de304695a06472a63da73, type: 3}
+  spawnPointForExplosionVFX: {fileID: 9057311036266262540}
   onClick:
     m_PersistentCalls:
       m_Calls:
@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 6072284058856587361}
   - component: {fileID: 3768774762851337086}
   m_Layer: 0
-  m_Name: Button Cube
+  m_Name: OK Button Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -523,6 +523,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6072284058856587361}
+        m_TargetAssemblyTypeName: ButtonInteractable, Assembly-CSharp
+        m_MethodName: SpawnExplosionVFX
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
