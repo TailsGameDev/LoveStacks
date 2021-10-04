@@ -27,3 +27,7 @@ https://orangefreesounds.com/carmen-habanera/
 Audio/Cannon Boom
 License 0
 https://freesound.org/people/synthnisse/sounds/509526/
+
+Audio/Victory Sound
+License 0
+https://opengameart.org/content/voice-clip-packs-for-visual-novels-and-rpgs

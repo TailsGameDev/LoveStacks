@@ -35,14 +35,16 @@ namespace UnityStandardAssets.Utility
         private void OnEnable()
         {
             EditorApplication.update += Update;
-            EditorUserBuildSettings.activeBuildTargetChanged += Update;
+            // NOTE: Remove to get rid of console warning
+            // EditorUserBuildSettings.activeBuildTargetChanged += Update;
         }
 
 
         private void OnDisable()
         {
             EditorApplication.update -= Update;
-            EditorUserBuildSettings.activeBuildTargetChanged -= Update;
+            // NOTE: Remove to get rid of console warning
+            // EditorUserBuildSettings.activeBuildTargetChanged -= Update;
         }
 
         private void Update()
