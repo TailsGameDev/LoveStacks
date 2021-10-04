@@ -341,7 +341,7 @@ MonoBehaviour:
   interactionInput: 0
   inputType: 0
   raycastMaxDistance: 100
-  playerInput: {fileID: 0}
+  playerInput: {fileID: 2018426239}
 --- !u!54 &5990976897515729862
 Rigidbody:
   m_ObjectHideFlags: 0
