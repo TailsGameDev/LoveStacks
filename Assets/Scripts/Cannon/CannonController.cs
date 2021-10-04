@@ -38,14 +38,24 @@ public class CannonController : MonoBehaviour
 
     public void Shoot()
     {
-        GameObject CreatedCannonball = Instantiate(Cannonball, ShotPoint.position, ShotPoint.rotation);
-        CreatedCannonball.GetComponent<Rigidbody>().velocity = ShotPoint.transform.up * BlastPower;
+        GameObject createdCannonball = Instantiate(Cannonball, ShotPoint.position, ShotPoint.rotation);
+        createdCannonball.GetComponent<Rigidbody>().velocity = ShotPoint.transform.up * BlastPower;
+
+        StartCoroutine(DestroyCannonballCoroutine(createdCannonball));
 
         // Added explosion for added effect
-        Destroy(Instantiate(Explosion, ShotPoint.position, ShotPoint.rotation), 2);
+        Destroy(Instantiate(Explosion, ShotPoint.position, ShotPoint.rotation), 2.0f);
 
         // Shake the screen for added effect
-        Screenshake.ShakeAmount = 5;
+        Screenshake.ShakeAmount = 5.0f;
     }
 
+    WaitForSeconds cannonBallDestructionWait = new WaitForSeconds(15.0f);
+    IEnumerator DestroyCannonballCoroutine(GameObject createdCannonball)
+    {
+        yield return cannonBallDestructionWait;
+        Destroy(Instantiate(Explosion, createdCannonball.transform.position,
+                                createdCannonball.transform.rotation), 2.0f);
+        Destroy(createdCannonball);
+    }
 }
