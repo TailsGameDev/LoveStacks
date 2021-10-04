@@ -54,8 +54,11 @@ public class CannonController : MonoBehaviour
     IEnumerator DestroyCannonballCoroutine(GameObject createdCannonball)
     {
         yield return cannonBallDestructionWait;
-        Destroy(Instantiate(Explosion, createdCannonball.transform.position,
-                                createdCannonball.transform.rotation), 2.0f);
+        GameObject explosion = Instantiate(Explosion, createdCannonball.transform.position,
+                                createdCannonball.transform.rotation);
+        // Quick and dirty way of cancelling explision VFX
+        Destroy(explosion.GetComponent<AudioSource>());
+        Destroy(explosion, 2.0f);
         Destroy(createdCannonball);
     }
 }
